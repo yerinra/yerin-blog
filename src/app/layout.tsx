@@ -7,7 +7,6 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import ThemeToggleButton from "./components/theme-toggle-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +27,7 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
-        <ThemeToggleButton />
+
         <Footer />
       </body>
     </html>
