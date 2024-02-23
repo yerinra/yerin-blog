@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${GeistMono.variable} md:mx-auto w-11/13 md:w-1/2 mt-20 mx-20 flex flex-col gap-16 mb-20 bg-gray-50 text-gray-950 dark:bg-gray-950 dark:text-gray-50`}
+        className={`${inter.className} ${GeistMono.variable} md:mx-auto w-11/13 md:w-3/5 mt-20 mx-20 flex flex-col gap-16 mb-20 bg-gray-50 text-gray-950 dark:bg-gray-950 dark:text-gray-50`}
       >
         <Header />
         <main>{children}</main>

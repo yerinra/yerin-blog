@@ -2,7 +2,7 @@
 // import path from "path";
 // import matter from "gray-matter";
 
-import { getCategorizedPosts } from "@/lib/utils";
+import { getCategorizedPosts } from "@/lib/utils/getPosts";
 import PostPreview from "../components/post-preview";
 
 // import Link from "next/link";

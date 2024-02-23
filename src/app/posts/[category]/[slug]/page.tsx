@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { prettyOptions } from "@/lib/options";
-import { getPost } from "@/lib/utils";
+import { getPost } from "@/lib/utils/getPosts";
+import { twMerge as tw } from "tw-merge";
 
 export async function generateMetadata({ params }: any) {
   const blog = getPost(params.slug);
@@ -15,7 +16,7 @@ export default function Post({ params }: any) {
   const post = getPost(params.slug);
 
   return (
-    <article className="prose dark:prose-dark">
+    <article className={tw("prose dark:prose-dark !w-full")}>
       <h2>{post.category}</h2>
       <h1>{post.title}</h1>
       <h3>{post.date}</h3>
