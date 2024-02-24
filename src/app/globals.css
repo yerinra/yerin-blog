@@ -88,14 +88,31 @@ html {
 
 /* heading link style*/
 
-/* h1 > a > .icon.icon-link::before,
-h2 > a > .icon.icon-link::before,
-h3 > a > .icon.icon-link::before {
-  content: "o";
-  width: 10px;
-  height: 1px;
-  background-color: black;
-} */
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  /* margin-left: -0.8em;
+  padding-right: 0.5em; */
+  width: 70%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose a {
+  @apply transition-all;
+}
+.prose .anchor:after {
+  @apply text-gray-300 dark:text-gray-700 font-normal;
+  content: "#";
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
 
 /* 줄 번호 표시*/
 
@@ -138,6 +155,11 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 /* Fenced Code block - hide horizontal scrollbar: mozila */
 .prose pre {
   scrollbar-width: none;
+  overflow: auto;
+}
+
+.prose code {
+  @apply py-2;
 }
 
 /* Fenced Code block - line style */
@@ -147,8 +169,10 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 /*줄 단위 하이라이트 스타일*/
 
 .prose code span[data-highlighted-line] {
-  @apply border-l-2 border-y-0 border-transparent bg-opacity-10 
-         border-blue-400 bg-indigo-400 dark:border-blue-500 dark:bg-slate-700
+  /* @apply border-l-2 border-y-0 border-transparent bg-opacity-10 border-blue-400 bg-indigo-400 dark:border-blue-500 dark:bg-slate-700
+         pl-[calc(0.5rem-2px)] md:pl-[calc(1rem-2px)]; */
+  @apply border-l-[2px] border-y-0 border-transparent bg-opacity-10 
+         border-[#61afef] bg-indigo-400  dark:bg-slate-700
          pl-[calc(0.5rem-2px)] md:pl-[calc(1rem-2px)];
 }
 
@@ -179,7 +203,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 /*제목*/
 .prose figcaption[data-rehype-pretty-code-title] {
   /* @apply px-5 py-3 font-mono text-sm font-bold text-gray-800 bg-gray-200 border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800; */
-  @apply px-5 py-3 font-mono text-sm font-bold text-gray-900 bg-accent border border-b-0 border-gray-200 rounded-t-lg dark:text-gray-200 dark:border-gray-700 dark:bg-gray-800;
+  @apply px-5 py-3 font-mono text-sm font-bold text-gray-900 bg-acc border border-b-0 border-acc rounded-t-lg;
 }
 .prose figcaption[data-rehype-pretty-code-title] + pre {
   @apply mt-0 rounded-t-none;
@@ -192,79 +216,42 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 }
 
 /* inline code block style */
-.prose :not(pre) > code {
+/* .prose :not(pre) > code {
   @apply dark:bg-gray-900 bg-gray-200 border border-gray-200 dark:border-gray-700 font-mono text-sm font-normal align-middle py-0.5 px-1 rounded text-red-500;
-}
-/* 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 } */
+
+.prose :not(pre) > code {
+  @apply relative rounded bg-gray-200 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-red-500;
+}
+
+.prose h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+.prose h2 {
+  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+}
+
+.prose h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+.prose h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+.prose p {
+  @apply leading-7 [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6;
+}
+
+.prose blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
+}
+
+.prose ul {
+  @apply my-6 ml-6 list-disc;
+}
+
+.prose ul > li {
+  @apply mt-2;
+}
