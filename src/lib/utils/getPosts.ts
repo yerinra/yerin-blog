@@ -29,8 +29,8 @@ export const getSortedPosts = (): PostInfo[] => {
     const format = "YYYY-MM-DD";
     const dateOne = moment(a.date, format);
     const dateTwo = moment(b.date, format);
-    if (dateOne.isBefore(dateTwo)) return -1;
-    else if (dateOne.isAfter(dateTwo)) return 1;
+    if (dateOne.isBefore(dateTwo)) return 1;
+    else if (dateOne.isAfter(dateTwo)) return -1;
     else return 0;
   });
 };
