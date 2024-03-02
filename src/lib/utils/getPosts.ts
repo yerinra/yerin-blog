@@ -7,7 +7,7 @@ import type { PostInfo } from "../types";
 
 const postDir = "posts";
 
-const getSortedPosts = (): PostInfo[] => {
+export const getSortedPosts = (): PostInfo[] => {
   const files = fs.readdirSync(path.join(postDir));
 
   const posts = files.map((filename) => {
@@ -26,7 +26,7 @@ const getSortedPosts = (): PostInfo[] => {
   });
 
   return posts.sort((a, b) => {
-    const format = "MM-DD-YYYY";
+    const format = "YYYY-MM-DD";
     const dateOne = moment(a.date, format);
     const dateTwo = moment(b.date, format);
     if (dateOne.isBefore(dateTwo)) return -1;
